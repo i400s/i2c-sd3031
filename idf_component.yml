@@ -1,0 +1,9 @@
+version: "0.0.1"
+description: "esp32c6 mcp9808 temperature sensor component"
+url: "https://github.com/i400s/i2c-mcp9808"
+dependencies:
+  idf:
+    version: '>=5.3'
+files:
+  exclude:
+    - ".editorconfig"
