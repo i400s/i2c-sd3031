@@ -1,0 +1,9 @@
+version: "0.0.1"
+description: "esp32c6 sd3031 RTC with battery backed sram component"
+url: "https://github.com/i400s/i2c-sd3031"
+dependencies:
+  idf:
+    version: '>=5.3'
+files:
+  exclude:
+    - ".editorconfig"

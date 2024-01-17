@@ -1,0 +1,6 @@
+## IDF Component Manager Manifest File
+dependencies:
+  idf: ">=5.3"
+  i2c-sd3031:
+    version: "*"
+    path: "../../"
