@@ -3,31 +3,31 @@
 
 # I2C connected SD3031 Real Time Clock with battery backed static memory
 
-Code originally based on the esp - idf "I2C EEPROM Example"(i2c_eeprom) and using the ESP32-C6 as the development microprocessor.
+Code originally based on the esp - idf "I2C EEPROM Example" (i2c_eeprom) and using the ESP32-C6 as the development microprocessor.
 
-`Note:` The structure of the directories and files have been moved around to better encapsulate a "driver" component project similar to the ones used by Espressif on their [component registry](https://components.espressif.com/). To compile the example code you must be within the "examples/" directory as this is where the main project resides. The component code is in the root directory.
+`Note:` The structure of the directories and files have been moved around to better mimic a driver component project, similar to the ones used by Espressif on their [component registry](https://components.espressif.com/). To compile the example code you must be within the `example/` directory as this is where the main project resides. The component code is in the root directory (one level up from `example/`).
 
-`Warning:` The project includes an ".editorconfig" file containing formatting instructions. This can either be retained or replaced with your own version.
+`Warning:` The project includes an `.editorconfig` file containing formatting instructions. This can either be retained or replaced with your own version.
 
 ## Overview
 
-The idea behind this code is to be able to write and read information from the SD3031 RTC device using the I2C serial interface. In addition the code for the SD3031 is separated out as a "driver module". This driver may be included in other projects using the standard idf components system.
+The idea behind this code is to be able to write and read information from the SD3031 RTC device using the I2C serial interface. This driver may be included in other projects using the standard idf components system.
 
 ## How to use this code
 
 ### Hardware Required
 
-To run this code, you should have an ESP32-C6<sup>(1) </sup> microprocessor connected to an SD3031 device. The SD3031 device is a precision RTC with an accuracy of ±3.8ppm at 25℃. The device can be found on a breakout board from DFRobot and the [product brief is available](https : //wiki.dfrobot.com/SKU_DFR0998_Fermion_SD3031_RTC_Module_Breakout). I have managed to find a [datasheet](https://jlcpcb.com/partdetail/Wave-SD3031/C2988356) with more complete information about the SD3031 but it will require translation (Google translate does an OK job, but the formatting gets a bit messed up).
+To run this code, you should have an ESP32-C6<sup>(1) </sup> microprocessor connected to an SD3031 device. The SD3031 device is a precision RTC with an accuracy of ±3.8ppm at 25℃. The device can be found on a breakout board from DFRobot and the [product brief is available](https://wiki.dfrobot.com/SKU_DFR0998_Fermion_SD3031_RTC_Module_Breakout). I have managed to find a [datasheet](https://jlcpcb.com/partdetail/Wave-SD3031/C2988356) with more complete information about the SD3031 but it will require translation (Google translate does an OK job, but the formatting gets a bit messed up).
 
 #### Configuration parameters:
 
 Unlike the original example code the component code and example program no longer relies on project specific `menuconfig` settings(the example should create a default `sdkconfig` file when the target is set).
 
-To configure the device you will need to change the I2C* #defines and SD3031* #defines within the example/i2c_sd3031_main.c file.
+To configure the device you will need to change the I2C* #defines and SD3031* #defines within the `example/i2c_sd3031_main.c` file.
 
 This is to make the project more consistent with how a standard component would be used within your project.
 
-To make the component work with a new project you will need to create/amend an `idf_component.yml` within your project folder(similar to the one within the example/ directory). You will then need to add/modify the `path: "../../"` statement to point to the location you cloned this project into or alternatively you can add/modify the `path:` statement with `path: "./"` and add the following new line `git: "git@github.com:i400s/i2c-sd3031.git"` which will point to this git repository.
+To make the component work with a new project you will need to create/amend an `idf_component.yml` within your project folder (similar to the one within the example/ directory). You will then need to add/modify the `path: "../../"` statement to point to the location you cloned this project into or alternatively you can add/modify the `path:` statement with `path: "./"` and add the following new line `git: "git@github.com:i400s/i2c-sd3031.git"` which will point to this git repository.
 
 ### Build and Flash
 
@@ -35,11 +35,11 @@ To make the component work with a new project you will need to create/amend an `
 
 Enter:
 
-`cd [where you cloned the repository] / example / `
+`cd [where you cloned the repository]/example/`
 
-`idf.py set - target esp32c6` (replace esp32c6 with your esp32* device).
+`idf.py set-target esp32c6` (replace esp32c6 with your esp32* device).
 
-`idf.py - p PORT flash monitor` to build, flash and monitor the project (replace PORT with the usb port).
+`idf.py -p PORT flash monitor` to build, flash and monitor the project (replace PORT with the usb port).
 
 (To exit the serial monitor type `Ctrl+]`.)
 
