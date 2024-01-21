@@ -57,17 +57,17 @@ typedef struct sd3031_device_t* sd3031_handle_t;
  * @note The day of week is ignored for writes.
 */
 typedef struct {
-    uint16_t year;
-    uint8_t  month;
-    uint8_t  day;
-    uint8_t  hour;
-    uint8_t  minute;
-    uint8_t  second;
+    uint16_t year;           /*!< Year */
+    uint8_t  month;          /*!< Month */
+    uint8_t  day;            /*!< Day */
+    uint8_t  hour;           /*!< Hour */
+    uint8_t  minute;         /*!< Minute */
+    uint8_t  second;         /*!< Second */
     struct {
-        uint8_t hour_24 : 1;
-        uint8_t hour_pm : 1;
-        uint8_t week    : 3;
-    } flags;
+        uint8_t hour_24 : 1; /*!< 24 hour flag */
+        uint8_t hour_pm : 1; /*!< pm flag */
+        uint8_t week    : 3; /*!< day of week (starts on Monday) */
+    } flags;                 /*!< Control flags */
 } sd3031_time_t;
 
 /**
@@ -107,7 +107,7 @@ esp_err_t i2c_sd3031_del_device(sd3031_handle_t handle);
  *
  * @param[in] handle SD3031 device handle.
  * @param[in] time Date/time value.
- * @note Date/time is validated for correctness.
+ * @note Date/time is validated for basic correctness.
  * @return
  *      - ESP_OK: time set successfully.
 */
@@ -168,7 +168,7 @@ esp_err_t sd3031_clear_alarm(const sd3031_handle_t handle);
  * @param[in] handle SD3031 device handle.
  * @param[in] offset Offset within the user SRAM space.
  * @param[in] buffer Data buffer to be written.
- * @param[in] length Length of data to be written.
+ * @param[in] size Size of data buffer.
  * @return
  *      - ESP_OK: value stored successfully.
 */
@@ -179,8 +179,8 @@ esp_err_t sd3031_sram_write(const sd3031_handle_t handle, uint8_t offset, const 
  *
  * @param[in] handle SD3031 device handle.
  * @param[in] offset Offset within the user SRAM space.
- * @param[out] buffer Data buffer to store read data.
- * @param[in] length Length of data buffer to be read.
+ * @param[out] buffer Data buffer to return read data.
+ * @param[in] size Size of data buffer.
  * @return
  *      - ESP_OK: value retrieved successfully.
 */
